@@ -60,7 +60,7 @@ def valida (seq):
     """
     Parameters
     ----------
-    seq : TYPE: strign
+    seq : TYPE: string
         DESCRIPTION: string que corresponde a uma sequencia de DNA
 
     Returns
