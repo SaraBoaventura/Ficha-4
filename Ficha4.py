@@ -29,7 +29,6 @@ def ler_seq (f):
 
 ler_seq(f)        
 
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 file = open("sequence.fasta","r")
 
@@ -53,13 +52,10 @@ def ler_FASTA_seq (file):
     return (sequence)
 
 ler_FASTA_seq(file)
+ 
 
-
-
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\    
-
-seq = "TTAAATCGCGGTGGAGCATGTG"
-# seq = input("Digite a sequencia: ")       
+#seq = "TTAAATCGCGGTGGAGCATGTG"
+seq = input("Digite a sequencia: ")       
 def valida (seq):
     """
     Parameters
@@ -84,13 +80,10 @@ def valida (seq):
 valida (seq)    
 
 
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
 
 #seq = "TTAAATCGCGGTGGAGCATGTG"
 #seq = "ACFG"
-# seq = input("Digite a sequencia: ")  
+seq = input("Digite a sequencia: ")  
 
 def complemento_inverso (seq):
     """
@@ -118,9 +111,7 @@ def complemento_inverso (seq):
 complemento_inverso(seq)
 
 
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-# seq = input("Digite a sequencia: ")  
+seq = input("Digite a sequencia: ")  
 
 def transcricao(seq):
     """
@@ -147,11 +138,8 @@ def transcricao(seq):
 transcricao(seq)
 
 
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
 #seq = "ACFG"
-# seq = input("Digite a sequencia: ")  
+seq = input("Digite a sequencia: ")  
 
 def traducao (seq):
     """
@@ -207,12 +195,6 @@ def traducao (seq):
 
 traducao(seq)
         
-    
-    
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
-    
-# CONTAR AS BASES DE RNA E PROTEINAS
- 
 
 seq = input("Digite a sequencia ")
 
@@ -232,7 +214,7 @@ def contar_bases (seq):
     """
     A, C, G, T, U = 0, 0, 0, 0, 0
     seq = seq.upper()
-    if not "ACGT" or not "ACGU" in seq:    
+    if "ACGTU" not in seq:   
         raise TypeError("A sequencia nao e valida") #NAO FUNCIONA
     else:    
         if "T" in seq:
@@ -256,12 +238,9 @@ def contar_bases (seq):
     return bases
 
 contar_bases(seq)    
-    
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 #sequencia = "CGATGGCTGATTGAATGGCGTAAATGTAACATGGCTTAAAAATGGCGTGGTAAAATGGACGCATGACTATGTAAATGTAAATGGCGTACTAGTATGGCTAGGTACTAGCGATGTAG"
 sequencia = input("Digite a sequencia ")
-
 
 def traducao_RNA (sequencia):
     """
@@ -316,10 +295,6 @@ def traducao_RNA (sequencia):
     
 traducao_RNA(sequencia)    
     
-
-
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
     
 sequencia = input("Digite a sequencia ")
 
@@ -343,12 +318,8 @@ def reading_frames (sequencia):
     else:
         raise TypeError("A sequencia é inválida")
     return (reading_frames)
-
-    
+   
 reading_frames(sequencia)    
-    
-    
-#\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\    
 
 
 sequencia = input("Digite a sequencia: ")
