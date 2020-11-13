@@ -5,7 +5,6 @@ Created on Wed Nov 11 10:54:18 2020
 @author: 35192
 """
 
-
 import unittest
 
 import Ficha4
@@ -31,7 +30,7 @@ class TestFicha4 (unittest.TestCase):
         self.assertRaises(TypeError, Ficha4.transcricao, 'AACGT1')
         self.assertRaises(TypeError, Ficha4.transcricao, 'AACGT?')
     def test_traducao(self):
-        self.assertEqual(Ficha4.traducao(""),'')
+        self.assertEqual(Ficha4.traducao("ATC"),'I')
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGTE')
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGT1')
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGT?')
@@ -45,7 +44,7 @@ class TestFicha4 (unittest.TestCase):
     def test_reading_frames(self):
         self.assertRaises(TypeError, Ficha4.reading_frames, 'ACGE')
     def test_get_proteins(self):
-        self.assertEqual(Ficha4.get_proteins("AUC"), 'I')   # ???????
+        self.assertEqual(Ficha4.get_proteins("AUC"), 'I')   
 
                    
 if __name__ == '__main__':
