@@ -203,13 +203,13 @@ def contar_bases (seq):
     Parameters
     ----------
     seq : TYPE: string
-        DESCRIPTION: sequencia de DNA,RNA ou aminoacidos 
+        DESCRIPTION: sequencia de DNA ou RNA 
 
     Returns
     -------
     bases : TYPE: dicionario 
         DESCRIPTION: retorna um dicionario com a contagem de cada elemento da sequencia
-   Funçao que recebe uma sequencia de DNA,RNA ou aminoacidos 
+   Funçao que recebe uma sequencia de DNA ou RNA 
    e retorna a contagem de cada elemento num dicionario.     
     """
     A, C, G, T, U = 0, 0, 0, 0, 0
