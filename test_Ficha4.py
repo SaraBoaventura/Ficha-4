@@ -16,6 +16,10 @@ class TestFicha4 (unittest.TestCase):
        self.assertEqual(Ficha4.ler_seq("ACGT"),'ACGT')
     def test_ler_fasta_seq(self):
         self.assertEqual(Ficha4.ler_FASTA_seq("ACGT"),'ACGT')
+    def test_valida(self):
+        self.assertEqual(Ficha4.valida("ACGTCCGT"), True)
+        self.assertEqual(Ficha4.valida("ACGTECGT"), False)
+        self.assertEqual(Ficha4.valida("ACGTCGT1"), False)    
     def test_complemento_inverso(self):
         self.assertEqual(Ficha4.complemento_inverso("AATCGATCG"),'CGATCGATT')
         self.assertRaises(TypeError, Ficha4.complemento_inverso, 'AACGTE')
@@ -31,10 +35,6 @@ class TestFicha4 (unittest.TestCase):
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGTE')
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGT1')
         self.assertRaises(TypeError, Ficha4.traducao, 'AACGT?')
-    def test_valida(self):
-        self.assertEqual(Ficha4.valida("ACGTCCGT"), True)
-        self.assertEqual(Ficha4.valida("ACGTECGT"), False)
-        self.assertEqual(Ficha4.valida("ACGTCGT1"), False)
     def test_contar_bases(self):
         self.assertRaises(TypeError, Ficha4.contar_bases, 'ACFD')
     def test_traducao_RNA(self):
