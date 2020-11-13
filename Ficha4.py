@@ -214,26 +214,26 @@ def contar_bases (seq):
     """
     A, C, G, T, U = 0, 0, 0, 0, 0
     seq = seq.upper()
-    if "ACGTU" not in seq:   
-        raise TypeError("A sequencia nao e valida") #NAO FUNCIONA
-    else:    
-        if "T" in seq:
+    if (all(x in 'ACGTU' for x in seq)):
+       if "T" in seq:
             A = seq.count('A')
             C = seq.count('C')
             G = seq.count('G')
             T = seq.count('T')
             bases = {"A": A , "C": C , "G": G, "T": T}
-        elif "U" in seq:
+       elif "U" in seq:
             A = seq.count('A')
             C = seq.count('C')
             G = seq.count('G')
             U = seq.count('U')
             bases = {"A": A , "C": C , "G": G, "U": U}        
-        elif "A" or "C" or "G" in seq:
+       elif "A" or "C" or "G" in seq:
             A = seq.count('A')
             C = seq.count('C')
             G = seq.count('G')
             bases = {"A": A , "C": C , "G": G}
+    else:
+        raise TypeError("A sequencia nao e valida")
     
     return bases
 
