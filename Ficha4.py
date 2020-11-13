@@ -240,8 +240,32 @@ def contar_bases (seq):
 contar_bases(seq)    
 
 #sequencia = "CGATGGCTGATTGAATGGCGTAAATGTAACATGGCTTAAAAATGGCGTGGTAAAATGGACGCATGACTATGTAAATGTAAATGGCGTACTAGTATGGCTAGGTACTAGCGATGTAG"
-sequencia = input("Digite a sequencia ")
+seq = input("Digite a sequencia: ")       
+def valida_RNA (seq):
+    """
+    Parameters
+    ----------
+    seq : TYPE: strign
+        DESCRIPTION: string que corresponde a uma sequencia de RNA
 
+    Returns
+    -------
+    bool
+        DESCRIPTION: Retorna False se a sequencia conter algum elemento que nao seja os
+        nucleotidos A,C,G,U.
+        Retorna True se for uma sequencia válida (conter apenas os nucleotidos  A,C,G ou U) 
+    """
+    seq = seq.upper() 
+    valid_rna = "ACGU"
+    for letter in seq:
+        if letter not in valid_rna:  
+            return False
+    return True
+              
+valida_RNA (seq)   
+
+
+sequencia = input("Digite a sequencia ")
 def traducao_RNA (sequencia):
     """
     Parameters
@@ -263,38 +287,36 @@ def traducao_RNA (sequencia):
 
     """
     sequencia = sequencia.upper() 
-    valid_rna = "ACGU"
     if (len(sequencia) < 3 ):
         raise TypeError("A sequencia nao pode ser inferior a 3")
     else:    
-        for letter in sequencia:
-            if letter not in valid_rna:
-                raise TypeError("A sequencia só pode conter A,C,G ou U")            
-    cadeia_RNA_separada = [(sequencia[i:i + 3]) for i in range(0, len(sequencia), 3)]
-    gencodeRNA = {
-    'AUA':'I', 'AUC':'I', 'AUU':'I', 'AUG':'M',
-    'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACU':'T',
-    'AAC':'N', 'AAU':'N', 'AAA':'K', 'AAG':'K',
-    'AGC':'S', 'AGU':'S', 'AGA':'R', 'AGG':'R',
-    'CUA':'L', 'CUC':'L', 'CUG':'L', 'CUU':'L',
-    'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCU':'P',
-    'CAC':'H', 'CAU':'H', 'CAA':'Q', 'CAG':'Q',
-    'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGU':'R',
-    'GUA':'V', 'GUC':'V', 'GUG':'V', 'GUU':'V',
-    'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCU':'A',
-    'GAC':'D', 'GAU':'D', 'GAA':'E', 'GAG':'E',
-    'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGU':'G',
-    'UCA':'S', 'UCC':'S', 'UCG':'S', 'UCU':'S',
-    'UUC':'F', 'UUU':'F', 'UUA':'L', 'UUG':'L',
-    'UAC':'Y', 'UAU':'Y', 'UAA':'_', 'UAG':'_',
-    'UGC':'C', 'UGU':'C', 'UGA':'_', 'UGG':'W'}
-    cadeia_aminoacidos = ""
-    for cadeia in cadeia_RNA_separada:
-        cadeia_aminoacidos += gencodeRNA.get(cadeia,"")
-    return cadeia_aminoacidos
+        if valida_RNA(sequencia) is False:
+            raise TypeError("A sequencia só pode conter ACGU")     
+        elif valida_RNA(sequencia) is True:           
+            cadeia_RNA_separada = [(sequencia[i:i + 3]) for i in range(0, len(sequencia), 3)]
+            gencodeRNA = {
+            'AUA':'I', 'AUC':'I', 'AUU':'I', 'AUG':'M',
+            'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACU':'T',
+            'AAC':'N', 'AAU':'N', 'AAA':'K', 'AAG':'K',
+            'AGC':'S', 'AGU':'S', 'AGA':'R', 'AGG':'R',
+            'CUA':'L', 'CUC':'L', 'CUG':'L', 'CUU':'L',
+            'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCU':'P',
+            'CAC':'H', 'CAU':'H', 'CAA':'Q', 'CAG':'Q',
+            'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGU':'R',
+            'GUA':'V', 'GUC':'V', 'GUG':'V', 'GUU':'V',
+            'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCU':'A',
+            'GAC':'D', 'GAU':'D', 'GAA':'E', 'GAG':'E',
+            'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGU':'G',
+            'UCA':'S', 'UCC':'S', 'UCG':'S', 'UCU':'S',
+            'UUC':'F', 'UUU':'F', 'UUA':'L', 'UUG':'L',
+            'UAC':'Y', 'UAU':'Y', 'UAA':'_', 'UAG':'_',
+            'UGC':'C', 'UGU':'C', 'UGA':'_', 'UGG':'W'}
+            cadeia_aminoacidos = ""
+            for cadeia in cadeia_RNA_separada:
+                cadeia_aminoacidos += gencodeRNA.get(cadeia,"")
+            return cadeia_aminoacidos
     
-traducao_RNA(sequencia)    
-    
+traducao_RNA(sequencia) 
     
 sequencia = input("Digite a sequencia ")
 
@@ -322,6 +344,32 @@ def reading_frames (sequencia):
 reading_frames(sequencia)    
 
 
+sequencia = input("Insera a sequencia: ")
+def reading_frames_RNA (sequencia):
+    """
+    Parameters
+    ----------
+    sequencia : TYPE: string
+        DESCRIPTION: string que contem uma sequencia de RNA 
+
+    Returns
+    -------
+    reading_frames : TYPE: lista
+        DESCRIPTION: Retorna uma Lista com as reading frames
+    Função que recebe uma sequencia de RNA e 
+    devolve uma lista com as reading frames    
+
+    """
+    if valida_RNA(sequencia) is True: # So esta a validar uma sequencia de DNA
+        reading_frames = re.findall('...', sequencia) 
+    else:
+        raise TypeError("A sequencia é inválida")
+    return (reading_frames)
+
+    
+reading_frames_RNA(sequencia) 
+
+
 sequencia = input("Digite a sequencia: ")
 
 def get_proteins(sequencia):
@@ -329,41 +377,48 @@ def get_proteins(sequencia):
     Parameters
     ----------
     sequencia : TYPE: string
-        DESCRIPTION. string de uma sequencia de DNA
+        DESCRIPTION. string de uma sequencia de DNA OU RNA
         
     Returns
     -------
     palavras: TYPE: lista
         DESCRIPTION: Retorna uma lista de proteinas 
-   Funçao que recebe uma sequencia de DNA
+   Funçao que recebe uma sequencia de DNA ou RNA
    e devolve a lista de todas as proteinas ordenadas por tamanho
    e ordem alfabetica para as do mesmo tamanho
     """
     palavras_encontradas = []
-    frames = reading_frames(sequencia)
-    lista = "".join(frames) # converter a lista para uma strign pois a funçao traducao recebe uma string
     tradu = []
-    tradu.append(traducao(lista))
+    if valida(sequencia) is True and valida_RNA(sequencia) is False:
+        frames = reading_frames(sequencia)
+        lista = "".join(frames) # converter a lista para uma string pois a funçao traducao recebe uma string
+        tradu.append(traducao(lista))
+    elif valida_RNA(sequencia) is True and valida(sequencia) is False:   
+        frames = reading_frames_RNA(sequencia)
+        lista = "".join(frames) # converter a lista para uma string pois a funçao traducao recebe uma string
+        tradu.append(traducao_RNA(lista))
+    print(tradu)    
     for palavra in tradu: # tradu e uma lista onde estao os aminoacidos
         caracteres = [char for char in palavra]
         palavra_encontrada = ""                 
         escreve = False                         
-        for caracter in caracteres:    # percorre a lista tradu         
-            if caracter == "M":
-                escreve = True
-            if caracter == "_" and len(palavra_encontrada) != 0: 
+    for caracter in caracteres:    # percorre a lista tradu         
+        if caracter == "M":
+            escreve = True
+        if caracter == "_" and len(palavra_encontrada) != 0: 
                 escreve = False                                 
                 palavra_encontrada += caracter                  
                 palavras_encontradas.append(palavra_encontrada) 
                 palavra_encontrada = ""                              
-            if escreve:
-                palavra_encontrada += caracter                    
+        if escreve:
+            palavra_encontrada += caracter                    
     palavras_encontradas_ord = sorted(palavras_encontradas) 
     palavras_s_duplicados = sorted(set(palavras_encontradas_ord), key= len, reverse = True)
     
     return(palavras_s_duplicados)   
     
 get_proteins(sequencia)    
+    
     
     
 
